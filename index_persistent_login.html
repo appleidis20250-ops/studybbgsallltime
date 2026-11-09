@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 12 Study Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Outfit:wght@200;300&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#111112;--line:rgba(255,255,255,.12);--line2:rgba(255,255,255,.16);
+ --surface:#19191a;--surface2:#202022;
+ --text:#f4f4f2;--muted:#9a9a9d;
+ --v1:#d7f542;--v2:#d7f542;--v3:#d7f542;
+ --grad:linear-gradient(#d7f542,#d7f542);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;min-height:100vh;color:var(--text);font:14px/1.6 'Poppins',ui-sans-serif,system-ui,sans-serif;overflow-x:hidden;
+ background:var(--bg);
+}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--v2);outline-offset:2px}
+h2,h3,h4,p{margin-top:0}
+h2{font-size:20px;letter-spacing:-.02em;font-weight:600}
+h3{font-size:15px;font-weight:600}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:rgba(17,17,18,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+.top{max-width:1100px;margin:auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:600;font-size:1rem;letter-spacing:.14em;cursor:pointer;user-select:none;transition:opacity .2s}
+.brand:hover{opacity:.8}
+.brand small{display:none}
+.main-nav{display:flex;align-items:center;gap:6px}
+.btn,.tab{border:1px solid var(--line2);border-radius:7px;padding:8px 16px;background:transparent;font-weight:500;font-size:13px;transition:background .2s,border-color .2s,color .2s}
+.btn:hover,.tab:hover{border-color:rgba(215,245,66,.6);background:rgba(215,245,66,.08)}
+.tab{border-color:transparent;color:var(--muted)}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--text);background:var(--surface2);border-color:var(--line)}
+.mini{padding:3px 11px;font-size:12px}
+.primary{background:#d7f542;border-color:#d7f542;color:#111;font-weight:700}
+.primary:hover{background:#e5ff58;border-color:#e5ff58;filter:none}
+.success{background:rgba(215,245,66,.12);border-color:rgba(215,245,66,.4);color:#e5f4a3}
+.danger{background:rgba(180,66,60,.12);border-color:rgba(229,139,125,.35);color:#f0aaa2}
+.nav-more{position:relative}
+.nav-more-trigger{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.nav-chevron{display:inline-block;width:10px;height:10px;flex:none}
+.nav-more-menu{position:absolute;right:0;top:calc(100% + 10px);z-index:80;min-width:190px;padding:6px;display:none;flex-direction:column;gap:2px;border:1px solid var(--line2);border-radius:9px;background:#19191a;box-shadow:0 18px 40px #000a}
+.nav-more.open .nav-more-menu{display:flex}
+.nav-more-menu .tab{width:100%;text-align:left;border-radius:10px;padding:10px 12px}
+
+/* Layout */
+.wrap{max-width:1100px;margin:auto;padding:26px 32px 50px}
+.view{display:none}
+.view.active{display:block;animation:viewIn .35s ease both}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.page-head{margin:20px 0 26px}
+.page-head h1{font-size:clamp(28px,4vw,40px);letter-spacing:-.04em;font-weight:600;margin:8px 0 8px}
+.page-head p{color:var(--muted);max-width:620px;margin:0}
+.eyebrow{color:var(--v2);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.grid{display:grid;gap:14px}
+.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.subject,.panel,.topic,.detail,.print-card{background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.subject,.panel{padding:20px;transition:border-color .2s}
+.subject:hover,.panel:hover{border-color:var(--line2)}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.bar{height:4px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden;margin:10px 0}
+.bar span{display:block;height:100%;background:var(--grad);border-radius:20px;transition:width .6s ease}
+.statline{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.pill{display:inline-block;border:1px solid var(--line2);border-radius:5px;padding:3px 10px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.available{color:#d7f542;border-color:rgba(215,245,66,.4)}
+.studying{color:#e3f58b;border-color:rgba(215,245,66,.45);background:rgba(215,245,66,.08)}
+.mastered{color:#111;background:var(--grad);border-color:transparent}
+.locked{color:#77748c}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 13px}
+.section-head h2{font-size:18px;margin:0}
+.topic-list{display:grid;gap:8px}
+.topic{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;transition:border-color .2s,background .2s}
+.topic:hover{border-color:rgba(215,245,66,.45);background:var(--surface2)}
+.topic strong{display:block;font-weight:500}
+.topic .meta{font-size:11px;color:var(--muted)}
+.controls{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.field,select,textarea{background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:10px;padding:10px 12px;outline:none;transition:border-color .2s}
+.field{width:100%}
+select{min-width:150px}
+.controls select{width:auto}
+select option{background:#19191a}
+.field:focus,select:focus,textarea:focus{border-color:var(--v2);box-shadow:0 0 0 3px rgba(215,245,66,.12)}
+.fieldlabel{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;display:block;margin-bottom:5px;letter-spacing:.12em}
+input[type=checkbox]{accent-color:var(--v2)}
+.detail{padding:28px;margin-top:16px}
+.detail h1{font-size:clamp(24px,4vw,36px);margin:8px 0 18px;letter-spacing:-.03em;font-weight:600}
+.objective,.prereq{padding:16px;background:rgba(0,0,0,.2);border:1px solid var(--line);border-radius:12px}
+.prereq ul{margin:8px 0 0;padding-left:20px}
+.prereq li{margin:6px 0}
+.callout{padding:14px;margin-top:14px;border-radius:12px;background:rgba(215,245,66,.08);border:1px solid rgba(215,245,66,.25);color:#e5f4a3}
+.pomo{margin-top:14px;background:rgba(0,0,0,.2)}
+.pomo{overflow:hidden}
+.pomo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:14px;align-items:end}
+.pomo-grid .fieldlabel,.timer-settings-grid .fieldlabel{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pomo-grid input,.timer-settings-grid input{margin:0!important;min-width:0}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line2);border-radius:12px}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--grad);color:#111;padding:10px 18px;border-radius:7px;font-weight:700;display:none;z-index:200;box-shadow:0 10px 30px #0008;max-width:90vw}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:35px 10px}
+
+/* Hide Netlify floating badge */
+#netlify-deploy-badge,
+[data-netlify-deploy-badge],
+iframe[src*="netlify"],
+div[class*="netlify-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Landing */
+.landing{min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:38px 18px 60px}
+.kicker{font-size:10px;font-weight:500;letter-spacing:.28em;color:var(--muted);margin-bottom:26px}
+.landing h1{font-size:clamp(36px,6.4vw,68px);line-height:1.06;letter-spacing:-.05em;font-weight:600;margin:0 0 16px}
+.landing p{font-size:14px;color:var(--muted);margin:0 0 30px;font-weight:300}
+.picker{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.picker select{background:rgba(255,255,255,.04)}
+.picker .btn{padding:11px 22px}
+.progress-block{max-width:760px;margin:0 auto 30px;padding:24px 0;border-top:1px solid var(--line)}
+.progress-top{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.16em;color:var(--muted)}
+.progress-top strong{font-size:12px;letter-spacing:0;color:var(--text);font-weight:500}
+.sub-grid{margin-top:16px}
+.sub-grid .subject{padding:14px 16px;background:transparent}
+.sub-grid .subject h3{font-size:13px;margin:0}
+.sub-grid .subject p{font-size:11px;margin-bottom:5px}
+.sub-grid .subject .btn{font-size:11px;padding:6px 12px}
+.backup-details{max-width:760px;margin:0 auto 35px;border-top:1px solid var(--line);padding:14px 0;color:var(--muted);font-size:12px}
+.backup-details summary{cursor:pointer;list-style:none}
+.backup-details summary::-webkit-details-marker{display:none}
+.backup-details summary:after{content:"+";float:right;color:var(--v2);font-size:16px}
+.backup-details[open] summary:after{content:"−"}
+.backup-content{padding-top:14px}
+
+/* Timer */
+.timer-panel{margin:24px auto 40px;padding:34px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:720px;border-radius:12px}
+.timer-phase{font-size:22px;margin:6px 0 0;font-weight:600;letter-spacing:-.02em}
+.timer-meta{color:var(--muted);font-size:12px}
+.timer-ring{width:min(76vw,320px);height:min(76vw,320px);border-radius:50%;display:grid;place-content:center;position:relative;background:conic-gradient(#d7f542 0deg,#39443b 0deg 360deg);margin:26px 0 8px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .1s ease}
+.timer-ring:active{transform:scale(0.97)}
+.timer-ring:before{content:"";position:absolute;inset:10px;border-radius:50%;background:#151516}
+.timer-clock{position:relative;z-index:1;font-size:clamp(52px,8vw,76px);line-height:1.1;letter-spacing:-.055em;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.timer-ring .timer-meta{position:relative;z-index:1;max-width:88%;margin:0 auto;font-size:12px}
+.timer-dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.timer-dots i{display:block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.14)}
+.timer-dots i.done{background:var(--grad)}
+.timer-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.timer-settings{display:none;width:100%;border-top:1px solid var(--line);padding-top:18px;margin-top:22px;text-align:left}
+.timer-settings.open{display:block;animation:viewIn .2s ease both}
+.timer-settings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;align-items:end}
+.timer-settings input{margin-top:5px}
+
+/* Shuffle */
+.shuffle{position:fixed;inset:0;z-index:130;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:20px}
+.shuffle.open{display:flex}
+.shuffle-card{width:min(560px,100%);padding:40px 28px;text-align:center;border-radius:20px;border:1px solid var(--line2);background:var(--surface)}
+.shuffle-card.landed{border-color:rgba(215,245,66,.7)}
+.shuffle-meta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-height:16px}
+.shuffle-title{margin-top:16px;min-height:2.7em;display:flex;align-items:center;justify-content:center;font-size:clamp(19px,3.4vw,26px);font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.shuffle-card.landed .shuffle-title{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+
+
+
+/* Print cards screen display */
+.print-page{margin-bottom:14px}
+.print-page-grid{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.print-page-grid.cards-1{grid-template-columns:1fr}
+.print-card{background:#fff;color:#111;border:2px dashed #333;border-radius:12px;padding:16px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+.print-card .muted{color:#555}
+.print-card h3{margin:6px 0;color:#111}
+.print-card .eyebrow{color:#6b3fd1}
+
+@media(max-width:850px){.top{padding:14px 18px}.wrap{padding:18px}.three{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.top{align-items:flex-start;flex-direction:column;gap:10px}.main-nav{width:100%;flex-wrap:wrap}.nav-more-menu{left:0;right:auto}.landing{min-height:calc(100vh - 200px)}}
+@media(max-width:600px){.two,.three{grid-template-columns:1fr}.timer-panel{padding:24px 16px}.timer-settings-grid,.pomo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.controls select{flex:1;min-width:0}.print-page-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Enhanced Print Formatting */
+@media print{
+ @page{size:A4 portrait;margin:10mm}
+ html,body{background:#fff!important;color:#111!important;margin:0!important;padding:0!important;font-size:11px!important}
+ header,footer,.no-print,#toast{display:none!important}
+ .wrap{max-width:none!important;padding:0!important;margin:0!important}
+ .view{display:none!important}
+ #printView{display:block!important}
+ .print-page{height:270mm;max-height:270mm;box-sizing:border-box;margin:0!important;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;overflow:hidden}
+ .print-page:last-child{page-break-after:auto;break-after:auto}
+ 
+ .print-page-grid{display:grid!important;height:100%!important;gap:4mm!important;box-sizing:border-box}
+ .print-page-grid.cards-1{grid-template-columns:1fr;grid-template-rows:1fr}
+ .print-page-grid.cards-2{grid-template-columns:1fr;grid-template-rows:repeat(2,1fr)}
+ .print-page-grid.cards-4{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}
+ .print-page-grid.cards-6{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr)}
+ .print-page-grid.cards-8{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr)}
+ 
+ .print-page-grid .print-card{
+  height:100%!important;
+  min-height:0!important;
+  padding:5mm!important;
+  border:1.5px dashed #444!important;
+  border-radius:2mm!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  break-inside:avoid!important;
+  background:#fff!important;
+ }
+ .print-page-grid .print-card h3{font-size:13px!important;margin:3px 0!important}
+ .print-page-grid .print-card p,.print-page-grid .print-card .muted{color:#333!important;font-size:10px!important;margin:3px 0!important}
+ .print-page-grid .print-card .eyebrow{color:#552bb7!important;font-size:8px!important}
+ .print-page-grid .print-card hr{margin:4px 0!important;border:0;border-top:1px solid #ccc}
+}
+</style>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCuGDuiut2GR8uHcVr9TuBCn8YLd8Y4uf4",
+    authDomain: "newstud-8edd1.firebaseapp.com",
+    projectId: "newstud-8edd1",
+    storageBucket: "newstud-8edd1.firebasestorage.app",
+    messagingSenderId: "1014616323191",
+    appId: "1:1014616323191:web:88f2f646cf543ff1b54272"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const progressDocRef = doc(db, "studyApp", "userProgress");
+
+  window.saveCloudProgress = async function(currentState) {
+    try {
+      await setDoc(progressDocRef, currentState);
+    } catch (err) {
+      console.error("Cloud sync error: ", err);
+    }
+  };
+
+  window.resetCloudProgress = async function(resetCustomTopics = false) {
+    try {
+      if (resetCustomTopics) {
+        await setDoc(progressDocRef, { mastered: [], studying: [], lastPick: null, customTopics: [] });
+      } else {
+        await setDoc(progressDocRef, { mastered: [], studying: [], lastPick: null, customTopics: state.customTopics || [] });
+      }
+    } catch (err) {
+      console.error("Cloud reset error: ", err);
+    }
+  };
+
+  onSnapshot(progressDocRef, (docSnap) => {
+    if (docSnap.exists() && window.applyState && window.refreshAll) {
+      window.applyState(docSnap.data());
+      window.refreshAll();
+    }
+  });
+</script>
+</head>
+<body>
+<header class="no-print"><div class="top">
+ <div class="brand" id="brandLogo">STUDY / 12</div>
+ <nav class="main-nav">
+  <button class="tab active" data-view="dashboard">Dashboard</button>
+  <button class="tab" data-view="explorer">Topic explorer</button>
+  <button class="tab student-only" data-view="timerView" style="display:none;">Pomodoro</button>
+  <div class="nav-more" id="navMore">
+   <button class="tab nav-more-trigger" id="navMoreTrigger" type="button" aria-expanded="false" aria-controls="navMoreMenu">More
+    <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5"/></svg>
+   </button>
+   <div class="nav-more-menu" id="navMoreMenu">
+    <button class="tab student-only" data-view="manageView" style="display:none;">Manage chapters</button>
+    <button class="tab" data-view="printView">Print cards</button>
+   </div>
+  </div>
+  <button class="btn mini" id="modeToggleBtn" style="margin-left: 10px;">Student Login</button>
+ </nav>
+</div></header>
+
+<main class="wrap">
+<section id="dashboard" class="view active">
+ <div class="landing">
+  <div class="kicker">CLASS 12 · STUDY SYSTEM</div>
+  <h1>One topic at a time.<br><span class="grad">Real progress.</span></h1>
+  <p>Pick a card, study it, and unlock what comes next.</p>
+  <div class="picker student-only" style="display:none;">
+   <select id="randomSubject" aria-label="Random subject"><option value="all">All subjects</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option></select>
+   <button class="btn primary" id="pickBtn">Pick a topic</button>
+  </div>
+  <p class="muted small student-locked-msg" style="margin-top:15px;">🔒 Parents view: Read-only mode. Log in as student to pick topics and study.</p>
+ </div>
+
+ <div class="progress-block">
+  <div class="progress-top"><span>YOUR PROGRESS</span><strong id="overallPercent">0% mastered</strong></div>
+  <div class="bar"><span id="overallBar" style="width:0%"></span></div>
+  <div class="sub-grid grid three" id="subjectStats"></div>
+ </div>
+
+
+ <details class="backup-details student-only" style="display:none;">
+  <summary>Progress backup</summary>
+  <div class="backup-content">
+   <p>Progress saves automatically in this browser as you study. Export a backup only if you might clear browser data or switch device.</p>
+   <div class="controls">
+     <button class="btn" id="exportBtn">Export progress</button>
+     <label class="btn" for="importFile">Import progress</label>
+     <input id="importFile" type="file" accept="application/json" hidden>
+     <button class="btn danger" id="resetBtn">Reset progress</button>
+     <button class="btn danger" id="resetAllBtn">Reset everything</button>
+   </div>
+  </div>
+ </details>
+</section>
+
+<section id="explorer" class="view">
+ <div class="panel" style="margin-top:22px"><div class="statline" style="flex-wrap:wrap"><div><div class="eyebrow">Browse topics</div><h2 style="margin:4px 0">Topic explorer</h2><p class="muted small" style="margin:0">Open a locked topic to see which prerequisites are incomplete.</p></div>
+ <div class="controls"><select id="subjectFilter"><option value="all">All subjects</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option></select><select id="statusFilter"><option value="all">All statuses</option><option value="available">Available</option><option value="studying">In progress</option><option value="mastered">Mastered</option><option value="locked">Locked</option></select></div></div></div>
+ <div id="explorerContent"></div>
+</section>
+
+<section id="manageView" class="view">
+ <div class="page-head"><div class="eyebrow">Chapter management</div><h1>Manage chapters</h1><p>Add topics manually or import a chapter list in the study-card JSON format.</p></div>
+ <div class="grid two">
+  <div class="panel">
+   <h2>Import a chapter</h2>
+   <p class="muted small">Paste the JSON generated using the format shown on this page. The import is checked before anything is added.</p>
+   <label class="fieldlabel" for="chapterJson">Chapter JSON</label>
+   <textarea id="chapterJson" class="field" rows="13" spellcheck="false" placeholder='{"subject":"Mathematics","chapter":"Continuity and Differentiability","topics":[...]}'></textarea>
+   <div class="controls" style="margin-top:12px"><button class="btn primary" id="importChapterBtn">Validate and add chapter</button><button class="btn" id="formatCopyBtn">Copy format</button></div>
+   <p class="muted small" id="importFeedback" aria-live="polite"></p>
+  </div>
+  <div class="panel">
+   <h2>Add one topic</h2>
+   <label class="fieldlabel" for="manualSubject">Subject</label><select id="manualSubject" class="field"><option>Mathematics</option><option>Physics</option><option>Chemistry</option></select>
+   <label class="fieldlabel" style="margin-top:10px" for="manualChapter">Chapter</label><input id="manualChapter" class="field" placeholder="Chapter name">
+   <label class="fieldlabel" style="margin-top:10px" for="manualTitle">Topic title</label><input id="manualTitle" class="field" placeholder="Topic name">
+   <label class="fieldlabel" style="margin-top:10px" for="manualObjective">Learning objective</label><textarea id="manualObjective" class="field" rows="2" placeholder="What should you be able to do?"></textarea>
+   <label class="fieldlabel" style="margin-top:10px" for="manualPrereqs">Prerequisites (Ctrl/Cmd to select several)</label><select id="manualPrereqs" class="field" multiple size="5"></select>
+   <button class="btn primary" id="addManualTopic" style="margin-top:12px">Add topic</button>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:18px">
+  <div class="statline" style="flex-wrap:wrap"><div><h2 style="margin:0">Current chapters</h2><p class="muted small" style="margin:4px 0 0">Topics added here are stored in this browser and included in the random picker and print cards.</p></div><button class="btn" id="exportChapterBtn">Export selected chapter</button></div>
+  <div class="controls" style="margin:12px 0"><select id="manageSubject" class="field"><option value="all">All subjects</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option></select><select id="manageChapter" class="field"><option value="all">All chapters</option></select></div>
+  <div id="manageChapterList" class="topic-list"></div>
+ </div>
+ <div class="panel" style="margin-top:18px">
+  <h2>AI generation format</h2>
+  <p class="muted small">Give an AI this instruction and ask it to return only valid JSON. Paste the result into the import box above.</p>
+  <pre class="objective small" style="white-space:pre-wrap;overflow-wrap:anywhere;margin:0" id="aiPrompt">Create a chapter topic list for my study-card website.
+
+Return ONLY valid JSON in this exact structure:
+{
+  "subject": "Mathematics",
+  "chapter": "Chapter name",
+  "topics": [
+    {
+      "id": "unique-id",
+      "title": "Topic title",
+      "objective": "One concise, specific learning objective.",
+      "prerequisites": []
+    },
+    {
+      "id": "another-unique-id",
+      "title": "Next topic",
+      "objective": "One concise, specific learning objective.",
+      "prerequisites": ["unique-id"]
+    }
+  ]
+}
+
+Rules:
+- subject must be Mathematics, Physics or Chemistry.
+- Use lowercase IDs with letters, numbers and hyphens; make each ID unique.
+- Use prerequisites as IDs of topics in this chapter or topics already in my website.
+- Use [] when a topic has no prerequisite.
+- Keep topics small enough to study in one focused session.
+- Order topics logically, but do not force a linear chain where topics can be studied independently.
+- Return no Markdown fences or explanation; return JSON only.</pre>
+  <button class="btn" id="copyPromptBtn" style="margin-top:10px">Copy AI instruction</button>
+ </div>
+</section>
+
+<section id="timerView" class="view">
+ <div class="page-head"><div class="eyebrow">Pomodoro timer</div><h1>Study timer</h1><p>Set a focus period, take breaks, and track completed sessions.</p></div>
+ <section class="panel timer-panel no-print" aria-label="Pomodoro timer">
+  <div class="eyebrow">Study timer</div>
+  <div class="timer-phase" id="timerPhase">Focus</div>
+  <div class="timer-meta" id="timerSession">Focus session 1 of 4</div>
+  <div class="timer-dots" id="timerDots" aria-label="Completed focus sessions"></div>
+  <div class="timer-actions">
+   <button class="btn primary" id="timerStart">Start</button>
+   <button class="btn" id="timerReset">Reset</button>
+   <button class="btn" id="timerSettingsToggle">Timer settings</button>
+  </div>
+  <div class="timer-ring" id="timerRing">
+   <div class="timer-clock" id="timerClock">25:00</div>
+   <div class="timer-meta" id="timerHint"></div>
+  </div>
+  <div class="timer-settings" id="timerSettings">
+   <p class="muted small" style="margin:0 0 12px">All times in minutes.</p>
+   <div class="timer-settings-grid">
+    <label class="fieldlabel">Focus<input class="field" type="number" id="focusMinutes" min="1" max="180" value="25"></label>
+    <label class="fieldlabel">Short break<input class="field" type="number" id="shortMinutes" min="1" max="60" value="5"></label>
+    <label class="fieldlabel">Long break<input class="field" type="number" id="longMinutes" min="1" max="90" value="15"></label>
+    <label class="fieldlabel">Sessions<input class="field" type="number" id="sessionCount" min="2" max="8" value="4"></label>
+   </div>
+   <div class="timer-actions" style="justify-content:flex-start">
+    <button class="btn primary" id="saveTimerSettings">Save settings</button>
+    <span class="muted small">Saving resets the timer.</span>
+   </div>
+  </div>
+ </section>
+</section>
+
+<section id="topicView" class="view"><button class="btn no-print" id="backBtn">← Back</button><div id="topicDetail"></div></section>
+
+<section id="printView" class="view">
+ <div class="panel no-print" style="margin-top:22px">
+  <div class="statline" style="flex-wrap:wrap"><div><h2 style="margin:0">Print topic cards</h2><p class="muted small" style="margin:4px 0 0">Print the cards, cut them out and draw one at random.</p></div><button class="btn primary" onclick="window.print()">Print cards</button></div>
+  <div class="controls" style="margin-top:15px">
+   <select id="printFilter"><option value="all">All topics</option><option value="available">Unlocked only</option><option value="locked">Locked only</option><option value="mastered">Mastered only</option></select>
+   <select id="printSubject"><option value="all">All subjects</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option></select>
+   <select id="printPerPage" aria-label="Cards per page"><option value="1">1 card per page</option><option value="2">2 cards per page</option><option value="4" selected>4 cards per page</option><option value="6">6 cards per page</option><option value="8">8 cards per page</option></select>
+   <label class="small"><input type="checkbox" id="printPrereqs" checked> Show prerequisites</label>
+  </div>
+ </div>
+ <div id="printCards" style="margin-top:16px"></div>
+</section>
+</main>
+<footer>Class 12 Study Cards</footer>
+
+<div class="shuffle no-print" id="shuffle" aria-hidden="true">
+ <div class="shuffle-card" id="shuffleCard">
+  <div class="shuffle-meta" id="shuffleMeta"></div>
+  <div class="shuffle-title" id="shuffleCur"></div>
+ </div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+let isStudentLoggedIn = localStorage.getItem("class12_student_logged_in") === "true";
+
+const baseTopics = [
+ // MATHEMATICS — Matrices and Determinants
+ {id:"m01",s:"Mathematics",c:"Matrices and Determinants",t:"Meaning, notation and order of a matrix",o:"Recognise a matrix, identify rows and columns, state its order and locate an element aᵢⱼ.",p:[]},
+ {id:"m02",s:"Mathematics",c:"Matrices and Determinants",t:"Types of matrices",o:"Identify row, column, square, zero, diagonal, scalar, identity and triangular matrices.",p:["m01"]},
+ {id:"m03",s:"Mathematics",c:"Matrices and Determinants",t:"Equality of matrices",o:"Apply equality of corresponding elements to find unknown entries.",p:["m01"]},
+ {id:"m04",s:"Mathematics",c:"Matrices and Determinants",t:"Addition, subtraction and scalar multiplication",o:"Check dimensions and perform basic matrix operations.",p:["m01"]},
+ {id:"m05",s:"Mathematics",c:"Matrices and Determinants",t:"Multiplication of matrices",o:"Check compatibility, calculate products and understand why AB need not equal BA.",p:["m01","m04"]},
+ {id:"m06",s:"Mathematics",c:"Matrices and Determinants",t:"Transpose of a matrix",o:"Find the transpose and use properties such as (Aᵀ)ᵀ = A.",p:["m01"]},
+ {id:"m07",s:"Mathematics",c:"Matrices and Determinants",t:"Symmetric and skew-symmetric matrices",o:"Test Aᵀ = A or Aᵀ = −A and decompose a square matrix into these parts.",p:["m06"]},
+ {id:"m08",s:"Mathematics",c:"Matrices and Determinants",t:"Determinants of order 2",o:"Evaluate a 2 × 2 determinant and understand its notation.",p:["m01"]},
+ {id:"m09",s:"Mathematics",c:"Matrices and Determinants",t:"Determinants of order 3",o:"Expand a 3 × 3 determinant along a row or column.",p:["m08"]},
+ {id:"m10",s:"Mathematics",c:"Matrices and Determinants",t:"Minors and cofactors",o:"Find minors and cofactors and form a cofactor matrix.",p:["m09"]},
+ {id:"m11",s:"Mathematics",c:"Matrices and Determinants",t:"Properties of determinants",o:"Use row/column operations and determinant properties to simplify evaluation.",p:["m09"]},
+ {id:"m12",s:"Mathematics",c:"Matrices and Determinants",t:"Adjoint of a square matrix",o:"Construct the adjoint using the transpose of the cofactor matrix.",p:["m10"]},
+ {id:"m13",s:"Mathematics",c:"Matrices and Determinants",t:"Inverse of a matrix",o:"Find an inverse using A⁻¹ = adj(A)/|A| when the determinant is non-zero.",p:["m05","m12"]},
+ {id:"m14",s:"Mathematics",c:"Matrices and Determinants",t:"Solving equations using the inverse matrix",o:"Write a system as AX = B and solve using X = A⁻¹B.",p:["m05","m13"]},
+ {id:"m15",s:"Mathematics",c:"Matrices and Determinants",t:"Solving systems using determinants",o:"Use determinants and the inverse-matrix method to solve suitable systems of linear equations.",p:["m11","m13"]},
+
+ // PHYSICS — Electric Charges and Fields
+ {id:"p01",s:"Physics",c:"Electric Charges and Fields",t:"Electric charge: types and basic properties",o:"Distinguish positive and negative charge and describe additivity, conservation and quantisation.",p:[]},
+ {id:"p02",s:"Physics",c:"Electric Charges and Fields",t:"Conductors, insulators and charging",o:"Distinguish conductors from insulators and describe charging by friction, conduction and induction.",p:["p01"]},
+ {id:"p03",s:"Physics",c:"Electric Charges and Fields",t:"Coulomb's law",o:"Apply the magnitude and direction of electrostatic force between two point charges.",p:["p01"]},
+ {id:"p04",s:"Physics",c:"Electric Charges and Fields",t:"Superposition of electrostatic forces",o:"Find the net force due to multiple point charges using vector addition.",p:["p03"]},
+ {id:"p05",s:"Physics",c:"Electric Charges and Fields",t:"Electric field and field intensity",o:"Define electric field as force per unit positive test charge and calculate the field due to a point charge.",p:["p03"]},
+ {id:"p06",s:"Physics",c:"Electric Charges and Fields",t:"Electric field lines",o:"Draw and interpret field-line patterns and state their properties.",p:["p05"]},
+ {id:"p07",s:"Physics",c:"Electric Charges and Fields",t:"Electric dipole and dipole moment",o:"Define a dipole, its axis and dipole moment.",p:["p01"]},
+ {id:"p08",s:"Physics",c:"Electric Charges and Fields",t:"Field due to a dipole",o:"Understand and apply axial and equatorial field expressions for a dipole.",p:["p07"]},
+ {id:"p09",s:"Physics",c:"Electric Charges and Fields",t:"Torque on an electric dipole",o:"Calculate torque on a dipole in a uniform electric field.",p:["p07"]},
+ {id:"p10",s:"Physics",c:"Electric Charges and Fields",t:"Electric flux",o:"Understand flux through a surface and use Φ = EA cos θ for a uniform field.",p:["p05"]},
+ {id:"p11",s:"Physics",c:"Electric Charges and Fields",t:"Gauss's law",o:"State Gauss's law and connect enclosed charge with net electric flux.",p:["p10"]},
+ {id:"p12",s:"Physics",c:"Electric Charges and Fields",t:"Gauss's law: infinitely long charged wire",o:"Apply symmetry and Gauss's law to find the electric field of a long straight wire.",p:["p11"]},
+ {id:"p13",s:"Physics",c:"Electric Charges and Fields",t:"Gauss's law: infinite plane sheet",o:"Apply Gauss's law to an infinite plane sheet of charge.",p:["p11"]},
+ {id:"p14",s:"Physics",c:"Electric Charges and Fields",t:"Gauss's law: uniformly charged thin spherical shell",o:"Find the electric field inside and outside a uniformly charged thin spherical shell.",p:["p11"]},
+
+ // PHYSICS — Electrostatic Potential and Capacitance
+ {id:"p15",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Work and electric potential difference",o:"Relate the work done per unit charge to the potential difference between two points.",p:["p05"]},
+ {id:"p16",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Potential due to a point charge and charge system",o:"Calculate potential due to a point charge and use scalar superposition.",p:["p15"]},
+ {id:"p17",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Potential due to an electric dipole",o:"Understand and calculate potential at points due to a dipole.",p:["p07","p16"]},
+ {id:"p18",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Equipotential surfaces",o:"Describe equipotential surfaces and connect them with electric field direction.",p:["p15","p16"]},
+ {id:"p19",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Potential energy of charges and dipoles",o:"Calculate electrostatic potential energy for charge configurations and a dipole in a field.",p:["p15","p07"]},
+ {id:"p20",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Relation between electric field and potential",o:"Understand the relation between field and the spatial change in potential.",p:["p15","p18"]},
+ {id:"p21",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Conductors in electrostatic equilibrium",o:"Explain field and potential properties of a conductor in electrostatic equilibrium.",p:["p05","p15"]},
+ {id:"p22",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Capacitors and capacitance",o:"Explain a capacitor and use C = Q/V.",p:["p15"]},
+ {id:"p23",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Parallel-plate capacitor",o:"Understand the capacitance of a parallel-plate capacitor and its dependence on area and separation.",p:["p22"]},
+ {id:"p24",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Dielectrics and polarisation",o:"Explain the effect of a dielectric on capacitance and the electric field.",p:["p23"]},
+ {id:"p25",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Capacitors in series",o:"Derive and apply the equivalent capacitance for a series combination.",p:["p22"]},
+ {id:"p26",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Capacitors in parallel",o:"Derive and apply the equivalent capacitance for a parallel combination.",p:["p22"]},
+ {id:"p27",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Energy stored in a capacitor",o:"Use the equivalent expressions for energy stored in a charged capacitor.",p:["p22"]},
+ {id:"p28",s:"Physics",c:"Electrostatic Potential and Capacitance",t:"Energy density of an electric field",o:"Understand energy stored per unit volume in an electric field.",p:["p27"]},
+
+ // CHEMISTRY — Solutions
+ {id:"c01",s:"Chemistry",c:"Solutions",t:"Types of solutions and basic terminology",o:"Identify the solute, solvent and solution; classify solutions by the physical states of their components.",p:[]},
+ {id:"c02",s:"Chemistry",c:"Solutions",t:"Mass percentage and volume percentage",o:"Calculate concentration using mass-by-mass and volume-by-volume percentages.",p:["c01"]},
+ {id:"c03",s:"Chemistry",c:"Solutions",t:"Parts per million (ppm)",o:"Use ppm for very dilute solutions and interpret its meaning.",p:["c01"]},
+ {id:"c04",s:"Chemistry",c:"Solutions",t:"Mole fraction",o:"Calculate mole fractions of components and use their sum property.",p:["c01"]},
+ {id:"c05",s:"Chemistry",c:"Solutions",t:"Molarity",o:"Calculate molarity and account for solution volume.",p:["c01"]},
+ {id:"c06",s:"Chemistry",c:"Solutions",t:"Molality",o:"Calculate molality using mass of solvent and distinguish it from molarity.",p:["c01"]},
+ {id:"c07",s:"Chemistry",c:"Solutions",t:"Solubility of gases in liquids",o:"Describe factors affecting gas solubility, including pressure and temperature.",p:["c01"]},
+ {id:"c08",s:"Chemistry",c:"Solutions",t:"Henry's law",o:"State and apply Henry's law and interpret its constant.",p:["c07"]},
+ {id:"c09",s:"Chemistry",c:"Solutions",t:"Vapour pressure of liquid solutions",o:"Understand vapour pressure and the effect of adding a non-volatile solute.",p:["c01","c04"]},
+ {id:"c10",s:"Chemistry",c:"Solutions",t:"Raoult's law",o:"Apply Raoult's law to volatile and non-volatile solute cases.",p:["c09","c04"]},
+ {id:"c11",s:"Chemistry",c:"Solutions",t:"Ideal and non-ideal solutions",o:"Compare ideal and non-ideal solutions and positive/negative deviations.",p:["c10"]},
+ {id:"c12",s:"Chemistry",c:"Solutions",t:"Relative lowering of vapour pressure",o:"Use relative lowering of vapour pressure as a colligative property.",p:["c10"]},
+ {id:"c13",s:"Chemistry",c:"Solutions",t:"Elevation in boiling point",o:"Apply ΔTb = Kb m and solve related numericals.",p:["c06"]},
+ {id:"c14",s:"Chemistry",c:"Solutions",t:"Depression in freezing point",o:"Apply ΔTf = Kf m and solve related numericals.",p:["c06"]},
+ {id:"c15",s:"Chemistry",c:"Solutions",t:"Osmotic pressure",o:"Understand osmosis and apply the osmotic-pressure equation.",p:["c05"]},
+ {id:"c16",s:"Chemistry",c:"Solutions",t:"Molar mass from colligative properties",o:"Determine molar mass using suitable colligative-property data.",p:["c13","c14","c15"]},
+ {id:"c17",s:"Chemistry",c:"Solutions",t:"Abnormal molar mass and van 't Hoff factor",o:"Explain how solute association or dissociation affects colligative properties and apply the van't Hoff factor.",p:["c16"]}
+];
+
+let topics = [...baseTopics];
+
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const SUBJECTS=["Mathematics","Physics","Chemistry"];
+const LABEL={available:"Available",studying:"In progress",mastered:"Mastered",locked:"Locked"};
+const KEY="random_study_cards_v2",CUSTOM_KEY="class12_custom_topics_v1",TIMER_KEY="class12_pomodoro_settings_v1",BASE_TITLE="Class 12 Study Cards";
+let state={mastered:[],studying:[],lastPick:null,customTopics:[]};
+let currentTopic=null,previousView="dashboard",shuffling=false;
+
+const topic=id=>topics.find(t=>t.id===id);
+function showToast(msg){const el=$("toast");el.textContent=msg;el.style.display="block";clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.style.display="none",2400)}
+
+function save(){
+  try{
+    state.customTopics = topics.filter(t=>t.custom).map(t=>({id:t.id,s:t.s,c:t.c,t:t.t,o:t.o,p:t.p}));
+    localStorage.setItem(KEY,JSON.stringify(state));
+    window.saveCloudProgress?.(state); // Syncs progress + custom chapters to Firebase cloud
+  }catch(e){
+    showToast("Could not save: browser storage is full or blocked.");
+  }
+}
+
+window.applyState = function(x) {
+  const ok=a=>Array.isArray(a)?[...new Set(a.filter(i=>typeof i==="string"))]:[];
+  state.mastered=ok(x.mastered);
+  state.studying=ok(x.studying).filter(i=>!state.mastered.includes(i));
+  state.lastPick=x.lastPick||null;
+  state.activity = (x.activity && typeof x.activity === 'object') ? x.activity : {};
+
+  // Sync custom chapters from cloud state if available
+  if(Array.isArray(x.customTopics)){
+    topics = [...baseTopics];
+    x.customTopics.forEach(t=>{
+      if(t&&typeof t.id==="string"&&!topic(t.id)&&SUBJECTS.includes(t.s)){
+        topics.push({...t,custom:true});
+      }
+    });
+    saveCustomTopics();
+  }
+  refreshAll();
+};
+
+window.refreshAll = refreshAll;
+
+function status(t){if(state.mastered.includes(t.id))return"mastered";if(state.studying.includes(t.id))return"studying";return t.p.every(id=>state.mastered.includes(id))?"available":"locked"}
+const missing=t=>t.p.map(topic).filter(x=>x&&!state.mastered.includes(x.id));
+function descendants(id){const found=new Set();let changed=true;while(changed){changed=false;topics.forEach(t=>{if(!found.has(t.id)&&t.p.some(p=>p===id||found.has(p))){found.add(t.id);changed=true}})}return[...found]}
+
+function sanitizeCustom(){topics.forEach(t=>{if(t.custom)t.p=t.p.filter(i=>i!==t.id&&topic(i))})}
+function loadCustomTopics(){
+ try{const s=JSON.parse(localStorage.getItem(CUSTOM_KEY)||"[]");if(Array.isArray(s))s.forEach(t=>{if(t&&t.id&&Array.isArray(t.p)&&!topic(t.id))topics.push({...t,custom:true})});sanitizeCustom()}
+ catch(e){console.warn("Could not load added chapters",e)}
+}
+function saveCustomTopics(){try{localStorage.setItem(CUSTOM_KEY,JSON.stringify(topics.filter(t=>t.custom===true)))}catch(e){showToast("Could not save added topics.")}}
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||"null");if(x)window.applyState(x)}catch(e){console.warn("Could not load saved progress",e)}}
+
+/* ---------- student mode toggle ---------- */
+function toggleStudentMode() {
+  if (!isStudentLoggedIn) {
+    const pwd = prompt("Enter student password to unlock study features:");
+    if (pwd === "study123") {
+      isStudentLoggedIn = true;
+      localStorage.setItem("class12_student_logged_in", "true");
+      $("modeToggleBtn").textContent = "Lock Student Mode";
+      $("modeToggleBtn").classList.add("primary");
+      showToast("Student mode unlocked.");
+    } else if (pwd !== null) {
+      showToast("Incorrect password.");
+      return;
+    } else {
+      return;
+    }
+  } else {
+    isStudentLoggedIn = false;
+    localStorage.removeItem("class12_student_logged_in");
+    $("modeToggleBtn").textContent = "Student Login";
+    $("modeToggleBtn").classList.remove("primary");
+    setView("dashboard");
+    showToast("Locked back to parent observer view.");
+  }
+
+  document.querySelectorAll(".student-only").forEach(el => {
+    el.style.display = isStudentLoggedIn ? "" : "none";
+  });
+  document.querySelector(".student-locked-msg").style.display = isStudentLoggedIn ? "none" : "";
+  refreshAll();
+}
+$("modeToggleBtn").onclick = toggleStudentMode;
+
+/* ---------- navigation ---------- */
+function closeMore(){$("navMore").classList.remove("open");$("navMoreTrigger").setAttribute("aria-expanded","false")}
+function setView(id){
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(id).classList.add("active");
+ document.querySelectorAll(".tab[data-view]").forEach(b=>b.toggle("active",b.dataset.view===id));
+ if(id==="dashboard")renderDashboard();
+ if(id==="explorer")renderExplorer();
+ if(id==="printView")renderPrint();
+ if(id==="manageView")renderManager();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".tab[data-view]").forEach(b=>b.addEventListener("click",()=>{setView(b.dataset.view);closeMore()}));
+$("navMoreTrigger").addEventListener("click",()=>{const m=$("navMore"),open=!m.classList.contains("open");m.classList.toggle("open",open);$("navMoreTrigger").setAttribute("aria-expanded",String(open))});
+document.addEventListener("click",e=>{if(!$("navMore").contains(e.target))closeMore()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMore()});
+$("brandLogo").addEventListener("click",()=>{setView("dashboard");closeMore()});
+function openTopic(id){const active=document.querySelector(".view.active").id;if(active!=="topicView")previousView=active;currentTopic=id;renderDetail();setView("topicView")}
+$("backBtn").onclick=()=>setView(previousView==="topicView"?"dashboard":previousView);
+function refreshAll(){renderDashboard();renderExplorer();renderPrint();renderManager();if($("topicView").classList.contains("active"))renderDetail()}
+
+/* ---------- dashboard / explorer ---------- */
+function topicRow(t){const st=status(t);return `<div class="topic" role="button" tabindex="0" data-id="${esc(t.id)}"><div><div class="meta">${esc(t.s)} · ${esc(t.c)}</div><strong>${esc(t.t)}</strong></div><span class="pill ${st}">${LABEL[st]}</span></div>`}
+function wireTopicRows(root){root.querySelectorAll(".topic[data-id]").forEach(el=>{el.addEventListener("click",()=>openTopic(el.dataset.id));el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openTopic(el.dataset.id)}})})}
+function renderDashboard(){
+ const n=state.mastered.length,pct=topics.length?Math.round(n/topics.length*100):0;
+ $("overallPercent").textContent=`${pct}% mastered · ${n}/${topics.length}`;$("overallBar").style.width=pct+"%";
+ $("subjectStats").innerHTML=SUBJECTS.map(s=>{const arr=topics.filter(t=>t.s===s),k=arr.filter(t=>status(t)==="mastered").length,p=arr.length?Math.round(k/arr.length*100):0;return `<div class="subject"><div class="statline"><h3>${s}</h3><span class="pill mastered">${p}%</span></div><p class="muted small">${k} / ${arr.length} topics</p><div class="bar"><span style="width:${p}%"></span></div><button class="btn" data-sub="${s}">Browse topics</button></div>`}).join("");
+ $("subjectStats").querySelectorAll("button").forEach(b=>b.onclick=()=>{$("subjectFilter").value=b.dataset.sub;setView("explorer")});
+
+}
+function renderExplorer(){
+ const s=$("subjectFilter").value,f=$("statusFilter").value,arr=topics.filter(t=>(s==="all"||t.s===s)&&(f==="all"||status(t)===f));
+ const chapters=[...new Set(arr.map(t=>t.c))];
+ $("explorerContent").innerHTML=chapters.map(c=>{const list=arr.filter(t=>t.c===c);return `<div style="margin-top:20px"><div class="section-head"><h2>${esc(list[0].s)} · ${esc(c)}</h2><span class="muted small">${list.filter(t=>status(t)==="mastered").length}/${list.length} mastered</span></div><div class="topic-list">${list.map(topicRow).join("")}</div></div>`}).join("")||`<div class="empty">No topics match the selected filters.</div>`;
+ wireTopicRows($("explorerContent"));
+}
+$("subjectFilter").onchange=renderExplorer;$("statusFilter").onchange=renderExplorer;
+
+/* ---------- topic detail ---------- */
+function renderDetail(){
+ const t=topic(currentTopic);if(!t)return;
+ const st=status(t),miss=missing(t);
+ const prereq=t.p.length?t.p.map(id=>{const p=topic(id);if(!p)return"";const ps=status(p);return `<li>${state.mastered.includes(id)?"✓":"○"} <button class="btn mini" data-open="${esc(id)}">${esc(p.t)}</button> <span class="pill ${ps}">${LABEL[ps]}</span></li>`}).join(""):"<li>None. This topic has no prerequisites.</li>";
+ const lock=st==="locked"?`<div class="callout">This topic is locked because one or more prerequisites are incomplete. Complete them before starting this topic.</div>`:"";
+ const pomo=(isStudentLoggedIn&&(st==="available"||st==="studying"))?`<div class="panel pomo">
+  <div class="statline" style="flex-wrap:wrap"><h3 style="margin:0">Pomodoro settings</h3><span class="muted small">Minutes · shared with the Pomodoro page</span></div>
+  <div class="pomo-grid">
+   <label class="fieldlabel">Focus<input class="field" type="number" id="tpFocus" min="1" max="180" value="${timerConfig.focus}"></label>
+   <label class="fieldlabel">Short break<input class="field" type="number" id="tpShort" min="1" max="60" value="${timerConfig.short}"></label>
+   <label class="fieldlabel">Long break<input class="field" type="number" id="tpLong" min="1" max="90" value="${timerConfig.long}"></label>
+   <label class="fieldlabel">Sessions<input class="field" type="number" id="tpSessions" min="2" max="8" value="${timerConfig.sessions}"></label>
+  </div>
+  <div class="controls" style="margin-top:14px"><button class="btn primary" id="tpStart">${st==="available"?"Start topic with timer":"Start timer"}</button></div>
+ </div>`:"";
+ $("topicDetail").innerHTML=`<div class="detail">
+  <div class="eyebrow">${esc(t.s)} · ${esc(t.c)}</div>
+  <div class="statline" style="align-items:flex-start;gap:16px"><h1>${esc(t.t)}</h1><span class="pill ${st}">${LABEL[st]}</span></div>
+  <div class="objective"><strong>What you should be able to do</strong><br>${esc(t.o)}</div>
+  <div class="prereq" style="margin-top:14px"><strong>Prerequisites</strong><ul>${prereq}</ul>${miss.length?`<p class="small" style="color:var(--v3);margin:10px 0 0">Incomplete prerequisites: ${miss.map(x=>esc(x.t)).join(", ")}</p>`:""}</div>
+  ${lock}${pomo}
+  <div class="controls" style="margin-top:16px">
+   ${isStudentLoggedIn && st==="available"?`<button class="btn primary" id="startTopic">Start topic</button>`:""}
+   ${isStudentLoggedIn && st==="studying"?`<button class="btn primary" id="masterTopic">Mark as mastered</button>`:""}
+   ${isStudentLoggedIn && st==="mastered"?`<button class="btn danger" id="reopenTopic">Reopen topic</button>`:""}
+   ${!isStudentLoggedIn?`<p class="muted small">🔒 Parent view mode: Log in with Student password to complete or manage topics.</p>`:""}
+  </div>
+  <p class="muted small" style="margin:14px 0 0">Reopening a topic also reopens topics that depend on it.</p>
+ </div>`;
+ $("topicDetail").querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openTopic(b.dataset.open));
+ if($("startTopic"))$("startTopic").onclick=()=>{state.studying.push(t.id);save();refreshAll();showToast("Topic added to In progress.")};
+ if($("masterTopic"))$("masterTopic").onclick=()=>{state.mastered.push(t.id);state.studying=state.studying.filter(x=>x!==t.id);save();refreshAll();showToast("Topic marked as mastered. Other topics may now be available.")};
+ if($("reopenTopic"))$("reopenTopic").onclick=()=>{
+  const affected=descendants(t.id),names=affected.map(topic).filter(Boolean).map(x=>x.t);
+  if(!confirm(`Reopen "${t.t}" and ${names.length} dependent topic(s)?${names.length?" They will return to locked/available status until prerequisites are mastered again.":""}`))return;
+  const ids=[t.id,...affected];state.mastered=state.mastered.filter(x=>!ids.includes(x));state.studying=state.studying.filter(x=>!ids.includes(x));save();refreshAll();showToast("Topic and dependent topics reopened.");
+ };
+ if($("tpStart"))$("tpStart").onclick=()=>{
+  const v={focus:Number($("tpFocus").value),short:Number($("tpShort").value),long:Number($("tpLong").value),sessions:Number($("tpSessions").value)};
+  if(!applyTimerSettings(v))return;
+  if(st==="available"){state.studying.push(t.id);save()}
+  setView("timerView");startTimer();
+ };
+}
+
+/* ---------- random pick ---------- */
+/* ---------- audio effects (Web Audio API) ---------- */
+let sharedAudioCtx = null;
+function getAudioContext() {
+  if (!sharedAudioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) sharedAudioCtx = new AudioContext();
+  }
+  if (sharedAudioCtx && sharedAudioCtx.state === "suspended") {
+    sharedAudioCtx.resume();
+  }
+  return sharedAudioCtx;
+}
+
+// 1. Mechanical clicking / card-flip sound for topic shuffle wheel
+function playCardClickSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    
+    // Crisp noise burst simulating mechanical gear / card flap click
+    const bufferSize = ctx.sampleRate * 0.015;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = "highpass";
+    filter.frequency.setValueAtTime(1200 + Math.random() * 300, now);
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.18, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    noise.start(now);
+  } catch (e) {
+    console.warn("Card sound error:", e);
+  }
+}
+
+// 2. Landing tone when final topic card is chosen
+function playLandSound() {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    [659.25, 880].forEach((freq, index) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + index * 0.12);
+      gain.gain.setValueAtTime(0.2, now + index * 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + index * 0.12 + 0.4);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + index * 0.12);
+      osc.stop(now + index * 0.12 + 0.4);
+    });
+  } catch (e) {}
+}
+
+function shuffleReveal(chosen,pool,cb){
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches||pool.length<2){cb(chosen);return}
+ shuffling=true;
+ const box=$("shuffle"),card=$("shuffleCard"),cur=$("shuffleCur"),meta=$("shuffleMeta");
+ card.classList.remove("landed");box.classList.add("open");box.setAttribute("aria-hidden","false");
+ const steps=22;let i=0,last=null;
+ const show=t=>{cur.textContent=t.t;meta.textContent=`${t.s} · ${t.c}`};
+ (function tick(){
+  if(i>=steps){
+    show(chosen);
+    card.classList.add("landed");
+    playLandSound();
+    setTimeout(()=>{box.classList.remove("open");box.setAttribute("aria-hidden","true");shuffling=false;cb(chosen)},800);
+    return;
+  }
+  let t;do{t=pool[Math.floor(Math.random()*pool.length)]}while(t===last);
+  last=t;show(t);
+  playCardClickSound();
+  i++;
+  // Decelerating delay: clicks start rapidly and slow down as shuffle slows
+  const delay = 70 + (i > steps - 6 ? (i - (steps - 6)) * 40 : 0);
+  setTimeout(tick, delay);
+ })();
+}
+function pickRandom(){
+ if(shuffling||!isStudentLoggedIn)return;
+ const sub=$("randomSubject").value;
+ let arr=topics.filter(t=>status(t)==="available"&&(sub==="all"||t.s===sub));
+ if(!arr.length){showToast("No available topics for this subject. Choose another subject or complete a prerequisite.");return}
+ if(arr.length>1&&state.lastPick){const f=arr.filter(t=>t.id!==state.lastPick);if(f.length)arr=f}
+ const chosen=arr[Math.floor(Math.random()*arr.length)];
+ shuffleReveal(chosen,topics.filter(t=>sub==="all"||t.s===sub),ch=>{state.lastPick=ch.id;save();openTopic(ch.id)});
+}
+$("pickBtn").onclick=pickRandom;
+
+/* ---------- print ---------- */
+function renderPrint(){
+ const f=$("printFilter").value,s=$("printSubject").value,pre=$("printPrereqs").checked,per=Number($("printPerPage").value)||4;
+ const arr=topics.filter(t=>(f==="all"||status(t)===f)&&(s==="all"||t.s===s));
+ const card=t=>`<article class="print-card"><div class="eyebrow">${esc(t.s)} · ${esc(t.c)}</div><h3>${esc(t.t)}</h3><p>${esc(t.o)}</p>${pre?`<p class="muted"><strong>Prerequisites:</strong> ${t.p.length?t.p.map(id=>esc(topic(id)?.t||id)).join("; "):"None"}</p>`:""}<hr><div class="statline muted small"><span>Class 12 Study Cards</span><span>${esc(t.id.toUpperCase())}</span></div></article>`;
+ const pages=[];for(let i=0;i<arr.length;i+=per)pages.push(`<section class="print-page"><div class="print-page-grid cards-${per}">${arr.slice(i,i+per).map(card).join("")}</div></section>`);
+ $("printCards").innerHTML=pages.join("")||`<div class="empty">No topics match the selected filters.</div>`;
+}
+["printFilter","printSubject","printPrereqs","printPerPage"].forEach(id=>$(id).addEventListener("change",renderPrint));
+
+/* ---------- manage chapters ---------- */
+function renderManager(){
+ const subj=$("manageSubject").value,chapters=[...new Set(topics.filter(t=>subj==="all"||t.s===subj).map(t=>t.c))];
+ const sel=$("manageChapter"),old=sel.value;
+ sel.innerHTML='<option value="all">All chapters</option>'+chapters.map(c=>`<option>${esc(c)}</option>`).join("");
+ if(chapters.includes(old))sel.value=old;
+ const chosen=sel.value;
+ $("manageChapterList").innerHTML=chapters.filter(c=>chosen==="all"||c===chosen).map(c=>{
+  const arr=topics.filter(t=>t.c===c&&(subj==="all"||t.s===subj));
+  return `<div class="panel" style="margin:8px 0;padding:14px"><div class="statline"><strong>${esc(arr[0].s)} · ${esc(c)}</strong><span class="muted small">${arr.length} topics</span></div>${arr.map(t=>`<div class="topic" style="cursor:default;margin-top:8px"><div><strong>${esc(t.t)}</strong><div class="meta">${esc(t.id)} · ${t.p.length?`Prerequisites: ${t.p.map(id=>esc(topic(id)?.t||id)).join(", ")}`:"No prerequisites"}</div></div>${t.custom?`<button class="btn danger mini" data-delete-topic="${esc(t.id)}">Delete</button>`:`<span class="pill locked">Built-in</span>`}</div>`).join("")}</div>`;
+ }).join("")||'<div class="empty">No chapters found.</div>';
+ $("manageChapterList").querySelectorAll("[data-delete-topic]").forEach(b=>b.onclick=()=>deleteCustomTopic(b.dataset.deleteTopic));
+ const prereq=$("manualPrereqs"),keep=new Set([...prereq.selectedOptions].map(o=>o.value)),ms=$("manualSubject").value;
+ prereq.innerHTML=topics.filter(t=>t.s===ms).map(t=>`<option value="${esc(t.id)}"${keep.has(t.id)?" selected":""}>${esc(t.c)} · ${esc(t.t)}</option>`).join("");
+}
+function addChapterData(data){
+ if(!data||!SUBJECTS.includes(data.subject)||typeof data.chapter!=="string"||!data.chapter.trim()||!Array.isArray(data.topics)||!data.topics.length)throw Error("Use a valid subject, chapter name and non-empty topics array.");
+ const ids=new Set(topics.map(t=>t.id)),batch=new Set();
+ data.topics.forEach(t=>{
+  if(!t||typeof t.id!=="string"||!/^[a-z0-9-]+$/.test(t.id)||ids.has(t.id)||batch.has(t.id))throw Error(`Invalid or duplicate topic ID: ${t?.id||"(missing)"}`);
+  if(typeof t.title!=="string"||!t.title.trim()||typeof t.objective!=="string"||!t.objective.trim()||!Array.isArray(t.prerequisites))throw Error(`Topic ${t.id} needs a title, objective and prerequisites array.`);
+  batch.add(t.id);
+ });
+ const valid=new Set([...ids,...batch]);
+ data.topics.forEach(t=>t.prerequisites.forEach(id=>{if(!valid.has(id))throw Error(`Prerequisite "${id}" for ${t.id} does not exist.`)}));
+ const fresh=data.topics.map(t=>({id:t.id,s:data.subject,c:data.chapter.trim(),t:t.title.trim(),o:t.objective.trim(),p:[...new Set(t.prerequisites)],custom:true}));
+ const all=[...topics,...fresh],visiting=new Set(),visited=new Set();
+ function visit(id){if(visiting.has(id))throw Error("Prerequisite cycle detected. Remove circular dependencies.");if(visited.has(id))return;visiting.add(id);all.find(t=>t.id===id).p.forEach(visit);visiting.delete(id);visited.add(id)}
+ fresh.forEach(t=>visit(t.id));
+ topics.push(...fresh);saveCustomTopics();save();refreshAll();
+}
+$("importChapterBtn").onclick=()=>{
+ const fb=$("importFeedback");
+ try{const data=JSON.parse($("chapterJson").value);addChapterData(data);fb.textContent=`Added ${data.topics.length} topics to ${data.chapter}.`;fb.style.color="var(--v2)";showToast("Chapter added.")}
+ catch(e){fb.textContent=e.message;fb.style.color="#e58b7d"}
+};
+$("formatCopyBtn").onclick=()=>{
+ const sample={subject:"Mathematics",chapter:"Chapter name",topics:[{id:"new-topic-01",title:"Topic title",objective:"Describe the skill or concept to learn.",prerequisites:[]},{id:"new-topic-02",title:"Next topic",objective:"Describe the next learning objective.",prerequisites:["new-topic-01"]}]};
+ navigator.clipboard?.writeText(JSON.stringify(sample,null,2))?.then(()=>showToast("JSON example copied.")).catch(()=>showToast("Clipboard access unavailable."))
+};
+$("copyPromptBtn").onclick=()=>{navigator.clipboard?.writeText($("aiPrompt").textContent)?.then(()=>showToast("AI instruction copied.")).catch(()=>showToast("Clipboard access unavailable."))};
+$("manualSubject").onchange=renderManager;$("manageSubject").onchange=renderManager;$("manageChapter").onchange=renderManager;
+$("addManualTopic").onclick=()=>{
+ const subject=$("manualSubject").value,chapter=$("manualChapter").value.trim(),title=$("manualTitle").value.trim(),objective=$("manualObjective").value.trim(),prerequisites=[...$("manualPrereqs").selectedOptions].map(o=>o.value);
+ if(!chapter||!title||!objective){showToast("Fill in the chapter, topic and objective.");return}
+ let id=title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"topic";const base=id;let n=2;while(topic(id))id=base+"-"+n++;
+ try{addChapterData({subject,chapter,topics:[{id,title,objective,prerequisites}]});$("manualTitle").value="";$("manualObjective").value="";showToast("Topic added.")}catch(e){showToast(e.message)}
+};
+function deleteCustomTopic(id){
+ if(topics.some(t=>t.p.includes(id))){showToast("Cannot delete: other topics depend on this topic.");return}
+ if(!confirm("Delete this added topic? Its progress will also be removed."))return;
+ const i=topics.findIndex(t=>t.id===id&&t.custom);if(i<0)return;
+ topics.splice(i,1);state.mastered=state.mastered.filter(x=>x!==id);state.studying=state.studying.filter(x=>x!==id);
+ save();saveCustomTopics();refreshAll();showToast("Topic deleted.");
+}
+function downloadJSON(obj,name){const blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+$("exportChapterBtn").onclick=()=>{
+ const subject=$("manageSubject").value,chapter=$("manageChapter").value;
+ if(chapter==="all"){showToast("Select one chapter to export.");return}
+ const arr=topics.filter(t=>t.c===chapter&&(subject==="all"||t.s===subject));
+ downloadJSON({subject:arr[0].s,chapter,topics:arr.map(t=>({id:t.id,title:t.t,objective:t.o,prerequisites:t.p}))},chapter.toLowerCase().replace(/[^a-z0-9]+/g,"-")+".json");
+};
+
+/* ---------- backup ---------- */
+$("exportBtn").onclick=()=>{downloadJSON({...state,customTopics:topics.filter(t=>t.custom).map(t=>({id:t.id,s:t.s,c:t.c,t:t.t,o:t.o,p:t.p}))},"class12-study-cards-progress.json");showToast("Progress backup exported.")};
+
+/* ---------- reset handlers ---------- */
+// 1. Reset progress only (keeps custom/imported chapters)
+$("resetBtn").onclick = () => {
+  if (!isStudentLoggedIn) return;
+  if (confirm("Are you sure you want to reset your study progress? Your imported chapters will remain intact.")) {
+    state.mastered = [];
+    state.studying = [];
+    state.lastPick = null;
+    
+    save();
+    window.resetCloudProgress?.(false);
+    refreshAll();
+    showToast("Study progress has been reset. Imported chapters were kept.");
+  }
+};
+
+// 2. Reset everything (resets progress AND removes custom/imported chapters)
+$("resetAllBtn").onclick = () => {
+  if (!isStudentLoggedIn) return;
+  if (confirm("Are you sure you want to reset EVERYTHING? This will delete all imported chapters and reset progress across all devices.")) {
+    state = { mastered: [], studying: [], lastPick: null, customTopics: [] };
+    topics = [...baseTopics];
+    localStorage.removeItem(KEY);
+    localStorage.removeItem(CUSTOM_KEY);
+    window.resetCloudProgress?.(true);
+    refreshAll();
+    showToast("Everything has been reset to default.");
+  }
+};
+
+$("importFile").onchange=async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  const x=JSON.parse(await file.text());
+  if(!Array.isArray(x.mastered)||!Array.isArray(x.studying))throw Error("Invalid backup");
+  window.applyState(x);save();showToast("Progress backup imported.");
+ }catch(err){alert("This file is not a valid study-card progress backup.")}
+ e.target.value="";
+};
+
+/* ---------- audio chime for timer ---------- */
+function playChime() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    const now = ctx.currentTime;
+    
+    // Play a pleasant two-tone chime sequence (C5 to G5)
+    [523.25, 783.99].forEach((freq, index) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + index * 0.25);
+      gain.gain.setValueAtTime(0.15, now + index * 0.25);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + index * 0.25 + 0.6);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now + index * 0.25);
+      osc.stop(now + index * 0.25 + 0.6);
+    });
+  } catch (e) {
+    console.warn("Audio chime error:", e);
+  }
+}
+
+/* ---------- pomodoro ---------- */
+let timerConfig={focus:25,short:5,long:15,sessions:4};
+let timerPhase="focus",timerRemaining=25*60,timerRunning=false,timerDeadline=null,timerInterval=null,focusCompleted=0;
+function syncTimerInputs(){$("focusMinutes").value=timerConfig.focus;$("shortMinutes").value=timerConfig.short;$("longMinutes").value=timerConfig.long;$("sessionCount").value=timerConfig.sessions}
+function loadTimerConfig(){
+ try{const s=JSON.parse(localStorage.getItem(TIMER_KEY)||"null");if(s)timerConfig={...timerConfig,focus:s.focus||25,short:s.short||5,long:s.long||15,sessions:s.sessions||4}}catch(e){}
+ syncTimerInputs();timerRemaining=timerConfig.focus*60;renderTimer();
+}
+const formatTime=sec=>{const n=Math.max(0,Math.ceil(sec));return String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0")};
+const phaseLength=()=>(timerPhase==="focus"?timerConfig.focus:timerPhase==="short"?timerConfig.short:timerConfig.long)*60;
+function renderTimer(){
+ const labels={focus:"Focus",short:"Short break",long:"Long break"};
+ $("timerPhase").textContent=labels[timerPhase];
+ $("timerClock").textContent=formatTime(timerRemaining);
+ $("timerStart").textContent=timerRunning?"Pause":(timerRemaining<phaseLength()?"Resume":"Start");
+ $("timerSession").textContent=`Focus session ${Math.min(focusCompleted+1,timerConfig.sessions)} of ${timerConfig.sessions}`;
+ $("timerHint").textContent=`${timerConfig.focus} min focus · ${timerConfig.short} min short break · ${timerConfig.long} min long break`;
+ const deg=Math.max(0,Math.min(1,1-timerRemaining/phaseLength()))*360;
+ $("timerRing").style.background=`conic-gradient(from 0deg,#d7f542 0deg,#d7f542 ${deg}deg,#39443b ${deg}deg 360deg)`;
+ $("timerDots").innerHTML=Array.from({length:timerConfig.sessions},(_,i)=>`<i class="${i<focusCompleted?"done":""}"></i>`).join("");
+ document.title=timerRunning?`${formatTime(timerRemaining)} · ${labels[timerPhase]} — Class 12 Study`:BASE_TITLE;
+}
+function stopTimer(){timerRunning=false;if(timerInterval)clearInterval(timerInterval);timerInterval=null;timerDeadline=null}
+function startTimer(){
+ if(!isStudentLoggedIn)return;
+ if(timerRunning){pauseTimer();return}
+ timerRunning=true;timerDeadline=Date.now()+timerRemaining*1000;
+ timerInterval=setInterval(()=>{timerRemaining=Math.max(0,Math.ceil((timerDeadline-Date.now())/1000));if(timerRemaining<=0)advanceTimer();else renderTimer()},250);
+ renderTimer();
+}
+function pauseTimer(){if(timerRunning&&timerDeadline)timerRemaining=Math.max(0,Math.ceil((timerDeadline-Date.now())/1000));stopTimer();renderTimer()}
+function advanceTimer(){
+ stopTimer();
+ playChime();
+ if(timerPhase==="focus"){
+   focusCompleted++;
+   const todayStr = new Date().toISOString().split('T')[0];
+   state.activity[todayStr] = (state.activity[todayStr] || 0) + timerConfig.focus;
+   save();
+   if(focusCompleted>=timerConfig.sessions){timerPhase="long";focusCompleted=0}else timerPhase="short"
+ }
+ else timerPhase="focus";
+ timerRemaining=phaseLength();renderTimer();
+ showToast(timerPhase==="focus"?"Break finished. Ready for the next focus session.":timerPhase==="long"?"Focus sessions complete. Take a longer break.":"Focus session complete. Take a short break.");
+ startTimer();
+}
+function applyTimerSettings(v){
+ const ok=v.focus>=1&&v.focus<=180&&v.short>=1&&v.short<=60&&v.long>=1&&v.long<=90&&v.sessions>=2&&v.sessions<=8&&Object.values(v).every(Number.isInteger);
+ if(!ok){showToast("Use whole minutes: focus 1–180, short 1–60, long 1–90, sessions 2–8.");return false}
+ stopTimer();timerConfig={...v};try{localStorage.setItem(TIMER_KEY,JSON.stringify(timerConfig))}catch(e){}
+ timerPhase="focus";focusCompleted=0;timerRemaining=phaseLength();syncTimerInputs();renderTimer();return true;
+}
+$("timerStart").addEventListener("click",startTimer);
+$("timerRing").addEventListener("click",startTimer);
+$("timerReset").addEventListener("click",()=>{if(!isStudentLoggedIn)return;stopTimer();timerPhase="focus";focusCompleted=0;timerRemaining=phaseLength();renderTimer()});
+$("timerSettingsToggle").addEventListener("click",()=>$("timerSettings").classList.toggle("open"));
+$("saveTimerSettings").addEventListener("click",()=>{
+ if(!isStudentLoggedIn)return;
+ if(applyTimerSettings({focus:Number($("focusMinutes").value),short:Number($("shortMinutes").value),long:Number($("longMinutes").value),sessions:Number($("sessionCount").value)})){$("timerSettings").classList.remove("open");showToast("Timer settings saved.")}
+});
+
+/* ---------- keyboard shortcuts ---------- */
+document.addEventListener("keydown", (e) => {
+  if (!isStudentLoggedIn) return;
+  if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) return;
+  const key = e.key.toLowerCase();
+  
+  if (key === "r") {
+    e.preventDefault();
+    pickRandom();
+  }
+  
+  if (key === " ") {
+    e.preventDefault();
+    const activeView = document.querySelector(".view.active")?.id;
+    if (activeView === "dashboard") {
+      pickRandom();
+    } else if (activeView === "topicView") {
+      const primaryBtn = document.querySelector("#topicView .btn.primary, #topicView .btn.danger");
+      if (primaryBtn) primaryBtn.click();
+    }
+  }
+});
+
+/* ---------- start ---------- */
+loadCustomTopics();load();
+if (isStudentLoggedIn) {
+  $("modeToggleBtn").textContent = "Lock Student Mode";
+  $("modeToggleBtn").classList.add("primary");
+  document.querySelectorAll(".student-only").forEach(el => {
+    el.style.display = "";
+  });
+  document.querySelector(".student-locked-msg").style.display = "none";
+}
+refreshAll();loadTimerConfig();
+try{navigator.storage&&navigator.storagepersist&&navigator.storage.persist()}catch(e){}
+</script>
+</body>
+</html>
